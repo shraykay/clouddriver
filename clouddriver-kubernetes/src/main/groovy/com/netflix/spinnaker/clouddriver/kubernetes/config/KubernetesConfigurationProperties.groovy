@@ -41,6 +41,7 @@ class KubernetesConfigurationProperties {
     List<String> omitNamespaces
     String skin
     Integer cacheThreads
+    Integer pollingInterval
     List<LinkedDockerRegistryConfiguration> dockerRegistries
     List<String> requiredGroupMembership
     Permissions.Builder permissions = new Permissions.Builder()

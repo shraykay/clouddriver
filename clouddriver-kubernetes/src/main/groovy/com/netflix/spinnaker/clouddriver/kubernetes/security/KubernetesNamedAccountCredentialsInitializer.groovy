@@ -37,6 +37,7 @@ import org.springframework.context.annotation.Scope
 @Configuration
 class KubernetesNamedAccountCredentialsInitializer implements CredentialsInitializerSynchronizable {
   private static final Integer DEFAULT_CACHE_THREADS = 1
+  private static final Integer DEFAULT_POLLING_INTERVAL = 30
 
   @Autowired Registry spectatorRegistry
   @Autowired KubectlJobExecutor jobExecutor
@@ -94,6 +95,7 @@ class KubernetesNamedAccountCredentialsInitializer implements CredentialsInitial
           .omitNamespaces(managedAccount.omitNamespaces)
           .skin(managedAccount.skin)
           .cacheThreads(managedAccount.cacheThreads ?: DEFAULT_CACHE_THREADS)
+          .pollingInterval(managedAccount.pollingInterval ?: DEFAULT_POLLING_INTERVAL)
           .dockerRegistries(managedAccount.dockerRegistries)
           .requiredGroupMembership(managedAccount.requiredGroupMembership)
           .permissions(managedAccount.permissions.build())

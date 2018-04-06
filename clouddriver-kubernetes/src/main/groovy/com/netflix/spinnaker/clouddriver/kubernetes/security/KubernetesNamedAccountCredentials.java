@@ -56,6 +56,7 @@ public class KubernetesNamedAccountCredentials<C extends KubernetesCredentials> 
   private List<String> omitNamespaces;
   private String skin;
   final private int cacheThreads;
+  final private int pollingInterval;
   private C credentials;
   private final List<String> requiredGroupMembership;
   private final Permissions permissions;
@@ -99,6 +100,7 @@ public class KubernetesNamedAccountCredentials<C extends KubernetesCredentials> 
     this.omitNamespaces = omitNamespaces;
     this.skin = skin;
     this.cacheThreads = cacheThreads;
+    this.pollingInterval = pollingInterval;
     this.requiredGroupMembership = requiredGroupMembership;
     this.permissions = permissions;
     this.dockerRegistries = dockerRegistries;
@@ -154,6 +156,10 @@ public class KubernetesNamedAccountCredentials<C extends KubernetesCredentials> 
     return cacheThreads;
   }
 
+  public int getPollingInterval() {
+    return pollingInterval;
+  }
+
   public List<LinkedDockerRegistryConfiguration> getDockerRegistries() {
     return dockerRegistries;
   }
@@ -186,6 +192,7 @@ public class KubernetesNamedAccountCredentials<C extends KubernetesCredentials> 
     List<String> omitNamespaces;
     String skin;
     int cacheThreads;
+    int pollingInterval;
     C credentials;
     List<String> requiredGroupMembership;
     Permissions permissions;
@@ -304,6 +311,11 @@ public class KubernetesNamedAccountCredentials<C extends KubernetesCredentials> 
 
     Builder cacheThreads(int cacheThreads) {
       this.cacheThreads = cacheThreads;
+      return this;
+    }
+
+    Builder pollingInterval(int pollingInterval) {
+      this.pollingInterval = pollingInterval;
       return this;
     }
 
@@ -458,6 +470,7 @@ public class KubernetesNamedAccountCredentials<C extends KubernetesCredentials> 
           omitNamespaces,
           skin,
           cacheThreads,
+          pollingInterval,
           dockerRegistries,
           requiredGroupMembership,
           permissions,
